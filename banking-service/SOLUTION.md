@@ -92,3 +92,7 @@ pytest -q
 - **Ownership validation**: All operations verify user owns the resource
 - **CVV hashing**: Secure storage without plaintext CVV
 - **Standard library dates**: No external dateutil dependency
+
+## Security & Hygiene
+
+After a mistaken commit of .env, we rotated the JWT secret (treating the old key as compromised) and restarted the service so any previously issued tokens became invalid. We also scrubbed the repository history using git-filter-repo to remove .env from all past commits and ensured .env is ignored to prevent future tracking.
